@@ -20,8 +20,18 @@
 
 \documentclass{article}
 
+\usepackage[ngerman]{babel}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
 \usepackage[margin=1in]{geometry} 
 \usepackage{amsmath,amsthm,amssymb}
+
+\usepackage{mhchem} % for chemical equations
+\usepackage{pgfplots} % for nice looking plots
+\usepackage{wrapfig} % for text flow around figures
+
 
 \newcommand{\R}{\mathbb{R}}  
 \newcommand{\Z}{\mathbb{Z}}
@@ -44,14 +54,18 @@
 
 \newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
 
+
+\usepackage{tabularx} %improves table functionality
+\usepackage[thinlines]{easytable} % improves table styling
+
 \begin{document}
 
 % ------------------------------------------ %
 %                 START HERE                 %
 % ------------------------------------------ %
 
-\title{Homework X Revised Draft} % Replace X with the appropriate number
-\author{Author's Name\\Abstract Algebra I} % Replace "Author's Name" with your name
+\title{Homework 1} % Replace X with the appropriate number
+\author{Christian D. Zdralek\\Allg. und Anorg. Chemie AC-NI (PH, Geo, EE)} % Replace "Author's Name" with your name
 
 \maketitle
 
@@ -71,44 +85,160 @@
 % commands with "solution".
 % -----------------------------------------------------
 
-\begin{theorem}{x.yz}
-Replace this text with the statement of the theorem you are proving.
-\end{theorem}
+\begin{enumerate}
+	
+    \item \begin{enumerate}
+			\item $6,00\times10^2$ has 3 significant digits
+            \item $6,0$ has 2 significant digits
+            \item $0,06$ has 1 significant digit
+            \item $14,5+0,023 \approx 14,5$ has 3 significant digits
+		\end{enumerate}
+    
+    \item geg: $M(\ce{H2SO4})=98,08g/mol ; n=0,2500mol m=nM=24.52g$
+    \\Comment: On Studip, the online assignment sheet gives n 4 significant digits, which is what was used here. 
+    
+    \item An Atom is identified by two numbers: The mass number, Z, the sum of protons and neutrons in the atom's core, and the atomic number, A, which is the number of protons in the atom's core, as well as, implicitly, the number of electrons around it in its neutral state.
+ 	\item \begin{enumerate}
+             \item \ce{^12_6C}: 6 protons, 6 neutrons, 6 electrons
+             \item \ce{^28_14Si}: 14 protons, 14 neutrons, 14 electrons
+             \item \ce{^108_47Ag}: 47 protons, 61 neutrons, 47 electrons
+             \item \ce{^200_80Hg}: 80 protons, 120 neutrons, 80 electrons
+             \item \ce{^227_89Ac}: 89 protons, 138 neutrons, 89 electrons
+             \item \ce{^243_95Am}: 95 protons, 148 neutrons, 95 electrons
+             \item \ce{^73_32Ge}: 32 protons, 41 neutrons, 32 electrons
+             \item \ce{^152_63Eu}: 63 protons, 89 neutrons, 63 electrons
+             \item \ce{^280_111Rg}: 111 protons, 169 neutrons, 111 electrons
+             \item \ce{^259_102No}: 102 protons, 157 neutrons, 102 electrons
+    	 \end{enumerate}
+    
+   
+     \item The Graph of protons vs electrons is trivial, since all listed nuclides are in their respective neutral states and thus have the same number of electrons as they have protons. \\
+     
+     
+     \begin{tikzpicture}
+         \begin{axis}[
+         title=Number of protons vs Number of electrons,
+         xlabel={protons},
+         ylabel={electrons},
+        width=\linewidth,
+        axis lines=middle,
+        grid,
+        ymin=0,
+        ymax=120,
+        ytick={0,10,...,120},
+        xmin=0,
+        xmax=120,
+        xtick={0,10,...,120},
+        xticklabel={\pgfmathprintnumber{\tick}},
+        xticklabel style={rotate=45,anchor=north east}]
 
-\begin{proof}
-Replace this text with the details of your proof or solution.
-\end{proof}
 
-% -----------------------------------------------------
-% Second problem
-% -----------------------------------------------------
 
-\vspace{0.25in} % This just adds some space between problems 1 and 2.
+      \addplot [black, mark = *, nodes near coords=\ce{^12_6C},every node near coord/.style={anchor=180}] coordinates {( 6, 6)};
+      \addplot [black, mark = *, nodes near coords=\ce{^28_14Si},every node near coord/.style={anchor=180}] coordinates {( 14, 14)};
+      \addplot [black, mark = *, nodes near coords=\ce{^108_47Ag},every node near coord/.style={anchor=180}] coordinates {( 47, 47)};
+      \addplot [black, mark = *, nodes near coords=\ce{^200_80Hg},every node near coord/.style={anchor=180}] coordinates {( 80, 80)};
+      \addplot [black, mark = *, nodes near coords=\ce{^227_89Ac},every node near coord/.style={anchor=180}] coordinates {( 89, 89)};
+      \addplot [black, mark = *, nodes near coords=\ce{^243_95Am},every node near coord/.style={anchor=180}] coordinates {( 95, 95)};
+      \addplot [black, mark = *, nodes near coords=\ce{^73_32Ge},every node near coord/.style={anchor=180}] coordinates {( 32, 32)};
+      \addplot [black, mark = *, nodes near coords=\ce{^152_63Eu},every node near coord/.style={anchor=180}] coordinates {( 63, 63)};
+      \addplot [black, mark = *, nodes near coords=\ce{^280_111Rg},every node near coord/.style={anchor=180}] coordinates {( 111, 111)};
+      \addplot [black, mark = *, nodes near coords=\ce{^259_102No},every node near coord/.style={anchor=180}] coordinates {( 102, 102)};
 
-\begin{theorem}{x.yz}
-Replace this text with the statement of the theorem you are proving.
-\end{theorem}
+      \addplot[domain=0:120, color=red,]{x};
+      \end{axis}
+         \end{tikzpicture}
+         
+     
+     
+     
+     The graph of protons vs. neutrons follows. Interestingly, the number of neutrons in the core grows far faster than the number of protons, which leads to a substantial difference in the heavier nuclides towards the right end of the spectrum. In contrast, the two lightest nuclides of those listed above, \ce{^12_6C} and \ce{^28_14Si}, have the same number of neutrons as protons, respectively, and thus lie on the extrapolated graph for linear growth of neutrons in relation to protons.
 
-\begin{proof}
-Replace this text with the details of your proof or solution.
-\end{proof}
+		
+         \begin{tikzpicture}
+         \begin{axis}[
+         title=Number of protons vs Number of neutrons in the core,
+         xlabel={protons=electrons=atomic number},
+         ylabel={neutrons},
+        width=\linewidth,
+        axis lines=middle,
+        grid,
+        ymin=0,
+        ymax=180,
+        ytick={0,10,...,180},
+        xmin=0,
+        xmax=120,
+        xtick={0,10,...,120},
+        xticklabel={\pgfmathprintnumber{\tick}},
+        xticklabel style={rotate=45,anchor=north east}]
 
-% -----------------------------------------------------
-% Third problem
-% -----------------------------------------------------
 
-\vspace{0.25in} % This adds some space between problems 2 and 3.
 
-\begin{theorem}{x.yz}
-Replace this text with the statement of the theorem you are proving.
-\end{theorem}
+      \addplot [black, mark = *, nodes near coords=\ce{^12_6C},every node near coord/.style={anchor=180}] coordinates {( 6, 6)};
+      \addplot [black, mark = *, nodes near coords=\ce{^28_14Si},every node near coord/.style={anchor=180}] coordinates {( 14, 14)};
+      \addplot [black, mark = *, nodes near coords=\ce{^108_47Ag},every node near coord/.style={anchor=180}] coordinates {( 47, 61)};
+      \addplot [black, mark = *, nodes near coords=\ce{^200_80Hg},every node near coord/.style={anchor=180}] coordinates {( 80, 120)};
+      \addplot [black, mark = *, nodes near coords=\ce{^227_89Ac},every node near coord/.style={anchor=180}] coordinates {( 89, 138)};
+      \addplot [black, mark = *, nodes near coords=\ce{^243_95Am},every node near coord/.style={anchor=180}] coordinates {( 95, 148)};
+      \addplot [black, mark = *, nodes near coords=\ce{^73_32Ge},every node near coord/.style={anchor=180}] coordinates {( 32, 41)};
+      \addplot [black, mark = *, nodes near coords=\ce{^152_63Eu},every node near coord/.style={anchor=180}] coordinates {( 63, 89)};
+      \addplot [black, mark = *, nodes near coords=\ce{^280_111Rg},every node near coord/.style={anchor=180}] coordinates {( 111, 169)};
+      \addplot [black, mark = *, nodes near coords=\ce{^259_102No},every node near coord/.style={anchor=180}] coordinates {( 102, 157)};
 
-\begin{proof}
-Replace this text with the details of your proof or solution.
-\end{proof}
+      \addplot[domain=0:120, color=black,]{x};
+      \addplot[draw=none] coordinates {(1,1)};
+      \end{axis}
+         \end{tikzpicture}
 
-% -----------------------------------------------
-% Ignore everything that appears below this.
-% -----------------------------------------------
 
+
+       \item An Isotope is a nuclide which has the same number of protons and electrons as others of its element, but differs in number of Neutrons. For example, \ce{^14_6C} is a carbon isotope, since it has the same number of protons (and electrons) as ordinary carbon, \ce{^12_6C}, but an additional two neutrons.
+      
+  \item \begin{proof}
+
+
+              \begin{eqnarray}
+                  (a+b)^2-(a-b)^2-4ab &=& 0 \nonumber  \\
+                  a^2+2ab+b^2-(a^2-2ab+b^2)-4ab &=& 0 \nonumber \\
+                  a^2+2ab+b^2-a^2+2ab-b^2-4ab &=& 0 \nonumber
+              \end{eqnarray}
+
+  		  \end{proof}  
+
+ \item 
+  
+  
+  
+  \item
+%   \begin{table}{|l|l|l|l|x|}
+        
+%     	%\hline
+%         Symbol & Z & A & protons & neutrons & electrons \\
+%         \hline
+%         C & 55 & 133 & a & b & \\
+%     	\hline
+
+%     \end{table}
+	 	 
+\begin{table} [!htbp]
+    \begin{tabularx}{\linewidth}{|X|X|X|X|X|X|}
+        
+    	\hline
+        Symbol & Z & A & protons & neutrons & electrons\\
+        \hline
+        Cs & 55 & 133 & 55 & 78 & 55 \\
+        Bi & 83 & 209 & 83 & 126 & 83 \\
+        Ba & 56 & 138 & 56 & 82 & 56 \\
+        Sn & 50 & 120 & 50 & 70 & 50 \\
+        Kr & 36 & 84 & 36 & 48 & 36 \\
+        \ce{Sc^3+} & 21 & 45 & 21 & 24 & 18 \\
+        O & 8 & 8 & 8 & 8 & 8 \\
+        \ce{N^-2} & 7 & 7 & 7 & 7 & 10 \\
+    	\hline
+    \end{tabularx}
+    \end{table}
+    
+\end{enumerate}
+    
+    
 \end{document}
